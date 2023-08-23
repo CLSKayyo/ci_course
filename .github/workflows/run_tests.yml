@@ -20,11 +20,14 @@ jobs:
         with:
           go-version: 1.18
 
+      - name: Build Database
+        run: docker-compose build
+
       - name: Create Database
         run: docker-compose up -d
-        
-      - name: Build App
-        run: go build -v main.go
 
       - name: Test App
         run: go test -v main_test.go
+        
+      - name: Build App
+        run: go build -v main.go
