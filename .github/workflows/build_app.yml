@@ -12,7 +12,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  install:
+  test:
     strategy:
       matrix:
         go_version:
@@ -34,12 +34,6 @@ jobs:
 
       - name: Create Database
         run: docker-compose up -d
-
-  test:
-    needs: install
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v3
 
       - name: Test App
         run: go test -v main_test.go
