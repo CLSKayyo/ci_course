@@ -36,13 +36,14 @@ func DeletaAlunoMock() {
 }
 
 func TestVerificaStatusCodeDaSaudacaoComParametro(t *testing.T) {
+	name := "caio" 
 	r := SetupDasRotasDeTeste()
 	r.GET("/:nome", controllers.Saudacoes)
-	req, _ := http.NewRequest("GET", "/gui", nil)
+	req, _ := http.NewRequest("GET", "/"+name, nil)
 	resposta := httptest.NewRecorder()
 	r.ServeHTTP(resposta, req)
 	assert.Equal(t, http.StatusOK, resposta.Code, "Deveriam ser iguais")
-	mockDaResposta := `{"API diz":"E ai gui, Tudo beleza?"}`
+	mockDaResposta := `{"API diz":"Oi`+name+`, Tudo beleza?"}`
 	respostaBody, _ := ioutil.ReadAll(resposta.Body)
 	assert.Equal(t, mockDaResposta, string(respostaBody))
 }
