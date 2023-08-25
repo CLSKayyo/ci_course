@@ -47,3 +47,5 @@ jobs:
       - name: Build App
         run: go build -v main.go
 
+      - name: Secrets Example
+        run: echo "sua chave é ${{ secrets.SECRET_KEY }}"
